@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.homework4.R;
 import com.example.homework4.models.Movie;
 
@@ -68,7 +70,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             else{
                 imageUrl = movie.getPosterPath();
             }
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            int radius = 50;
+            int margin = 10;
+
+            //Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context).load(imageUrl).apply(new RequestOptions().fitCenter().transforms(new RoundedCorners(radius))).into(ivPoster);
+
         }
     }
 }
